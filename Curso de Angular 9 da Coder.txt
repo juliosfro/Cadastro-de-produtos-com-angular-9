@@ -1,1 +1,42 @@
 Curso de Angular 9 da Coder.
+Criamos o projeto com o comando npm init -y
+Vamos usar o Json Server: npm i json-server
+Em scripts colocamos o seguinte:  "start": "json-server --watch db.json --port 3001"
+Podemos rodar o Json Server dentro da pasta backend com o seguinte comando:
+npm start
+Podemos enviar todos os tipos de requisicoes para o Json Server atraves do navegador 
+ou do Postman.
+
+O Angular é um framework JavaScript desenvolvido pelo Google para criação de aplicacoes
+web SPA (Single Page Aplication) baseada em componentes.
+
+Command Line Interface (CLI), outros frameworks além do Angular também usam CLI.
+Instalamos o CLI através do seguinte comando: npm i -g @angular/cli
+
+- O TypeScript é uma linguagem criada pela Microsoft.
+- Para criar um novo projeto usamos o comando: ng new NomeDoProjeto
+- Colocaremos algumas flags no comando para criar o projeto.
+- Uma outra questao é o uso padrão do TypeScript no Angular.
+- O código em TypeScript será compilado para JavaScript de forma automática
+pois o browser não entende TypeScript e sim apenas JavaScript.
+- O TypeScript possuí tipagem forte que é uma de suas grandes características.
+- No TypeScript podemos definir tipos associados as variáveis.
+- Em JavaScript o tipo da variável é dinâmico, ou seja, uma variável pode receber
+tanto um array, um boolean, uma string, um objeto e etc.
+- Tudo que o JavaScript tem é suportado no TypeScript, sendo que o TypeScript coloca 
+algumas funcionalidades a mais.
+- Cada framework implementa os componentes de uma forma, por isso precisamos entender
+sobre árvore de componentes.
+- Começamos nossa aplicação através de um componente principal que será a raiz da aplicação
+e através desse componente vamos referenciando outros componentes.
+- Por default o componente principal do Angular se chama AppComponent que é o raíz da 
+aplicação e através dele podemos referenciar outros como o Header, outro chamado 
+Content para representar o conteúdo e assim por diante.
+- Dentro do Header temos um componente de navegação chamado Nav.
+- Dentro de Content (Conteúdo) podemos ter um componente chamado ContentTitle, outro 
+chamado ProductCrud para representar o cadastro de produtos.
+- Podemos ter um componente pai com vários componentes filhos.
+
+Conceitos Essenciais do Angular
+
+*...
