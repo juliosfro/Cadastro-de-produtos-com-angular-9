@@ -39,4 +39,80 @@ chamado ProductCrud para representar o cadastro de produtos.
 
 Conceitos Essenciais do Angular
 
-*...
+- Fluxo da Inicialização da aplicação.
+
+- Depois que nosso projeto for criado existirá um arquivo chamado main.ts
+- Nós vamos criar arquivos com a extensão .ts de TypeScript.
+- Tudo que usamos no JavaScript podemos colocar dentro de um arquivo TypeScript.
+- O arquivo main.ts é o primeiro a ser chamado para incializar a aplicação em Angular.
+- O main.ts por sua vez chamará o módulo de nossa aplicação que se chama por default AppModule.
+- A nossa aplicação em Angular será organizada através de componentes, ou seja, será uma grande
+árvore de componentes.
+- Os componentes são organizados dentro de módulos, ou seja, uma aplicação Angular é modularizada,
+por sua vez esses módulos podem dar alguns poderes como por exemplo criar alguns componentes que
+estejam visíveis apenas dentro do módulo, isso trás um maior nível de encapsulamento.
+- O AppComponent é o componente que foi criado por padrão (default), a partir do AppComponent toda
+a árvore de componentes será chamada.
+- AppModule é o nome do módulo default que é criado junto com o projeto.
+
+O que é um componente?
+- Componente é um trecho de código que representa algo visual na nossa tela.
+- Esse componente visual terá dentro de si, html, css e ts que será o seu comportamento.
+- O componente terá comportamento que conseguiremos isso através do TypeScript.
+- O componente terá estrutura que conseguiremos através do html.
+- O componente terá estilo que conseguiremos através do css.
+- Teremos em via de regra três arquivos, home.component.css, home.component.html e home.component.ts
+- É possível termos tudo em um único arquivo mas vamos utilizar arquivos separados. 
+- Quando criamos um componente é gerada uma tag personalizada, por exemplo <app-home></app-home>
+- Através da tag podemos referenciar todo o código html, estilo e toda a lógica que colocamos 
+dentro do arquivo ts, ou seja, referenciamos o componente em si.
+- O componente é um trecho visual da aplicação front-end.
+- Podemos referenciar componentes através de tags personalizadas.
+- A partir do arquivo TypeScript é que o Angular vai encontrar tanto o html quanto o css.
+- Dentro do arquivo ts do componente são feitas as referências para os outros arquivos, como
+o html e o css.
+- Com a junção de todos os arquivos referenciados dentro do arquivo ts é formado o componente.
+- Um componente pode referenciar um ou mais componentes e assim por diante, dessa forma irá surgir
+a árvore de componentes.
+- Além de organizar a aplicação em componentes o Angular também organiza em módulos.
+- É possível utilizar um único módulo para toda a aplicação.
+- Podemos organizar a aplicação em diversos módulos.
+- Quando criamos um componente dentro do módulo podemos escolher se ele ficará visível para fora do 
+módulo, ou seja, alguém fora do módulo pode referenciar aquele componente ou se o componente ficará
+visível apenas dentro do módulo.
+
+Anatomia do módulo
+- Dentro de um módulo temos cinco atributos, declarations, exports, imports, providers e bootstrap.
+- Em declarations declaramos todos os componentes que fazem parte do módulo.
+- Em declarations também declaramos as diretivas que fazem parte do módulo e também os pipes. 
+- Quando dizemos que um componente faz parte do módulo não significa dizer que ele está visível
+para fora do módulo.
+- Para deixar um componente visível para fora do módulo é necessário utilizar o exports.
+- O exports pode ser tudo o que colocamos em declarations ou parte daquilo que declaramos dentro
+do módulo.
+- O imports serve para importarmos outros módulos, ou seja, um módulo pode depender de outro
+módulo.
+- Em providers declaramos os services.
+- Em bootstrap definimos o componente que será carregado no módulo.
+- O bootstrap é necessário para dar o start no módulo inicial da aplicação fazendo com que o 
+componente inicial seja carregado e esteja disponível para ser usado na Single Page Aplication.
+- A dependência é de cima pra baixo na árvore de dependências.
+- O componente referenciado precisa ser exportado, quem está fazendo a referência não.
+
+Criando o App com o Angular CLI
+
+- Através do Command Line Interface podemos criar tudo o que precisamos.
+- Para cada componente criado dentro do angular é criado um prefixo, por padrão esse prefixo 
+se chama app.
+- Podemos escolher como ficará o prefixo de todos os componentes de nossa aplicação angular.
+- Podemos definir o prefixo passando uma flag no momento da criação do projeto.
+- Criamos nosso projeto de front-end com o comando: ng new frontend --minimal 
+- A flag --minimal serve para criar o projeto somente com os arquivos básicos, sem arquivos
+de teste por exemplo.
+- Para rodar nossa aplicação frontend precisamos entrar dentro da pasta frontend e digitar
+o comando npm start
+- Por padrão o servidor do Angular inicia na porta 4200, http://localhost:4200/
+
+Conhecendo os arquivos do projeto
+
+-x.
