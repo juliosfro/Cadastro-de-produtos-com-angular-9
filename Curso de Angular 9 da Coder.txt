@@ -115,4 +115,30 @@ o comando npm start
 
 Conhecendo os arquivos do projeto
 
--x.
+- O arquivo tsconfig.json guarda as configurações de compilação do nosso projeto.
+- Vamos fazer uma mudança no arquivo angular.json, onde está inlineTemplate definido
+como true então vamos setá-lo como false.
+- A opção inlineStyle no arquivo angular.json também vamos defini-lá como falso, 
+ou seja, vamos setá-la como false. 
+- Quando formos criar o componente o nosso html estará em um arquivo separado.
+- O CSS que é o estilo também estará em um arquivo separado, pois definimos isso
+no arquivo angular.json.
+- Quando dizemos para criar inline significa que será criado um único arquivo, ou 
+seja tanto o css quanto o html estarão presentes dentro do arquivo do typescript.
+- Dentro da pasta src temos o arquivo main.ts que é a porta de entrada da aplicação.
+- Em main.ts por default é carregado o AppModule que é o módulo padrão que é criado
+junto com o projeto.
+- A função do main.ts é carregar o módulo principal.
+- Como mandamos criar nosso projeto com a flag --minimal então por default o html
+ficou inline dentro do arquivo app.component.ts, dentro da pasta app em src.
+- Na pasta assets dentro de src podemos colocar arquivos estáticos como imagens, 
+logo da nossa aplicação e etc.
+- Na pasta environments temos os arquivos onde podemos definir variáveis de ambiente.
+- Outro  arquivo extremamente importante é o index.html que fica dentro da pasta src,
+pois ele representa toda a nossa single page aplication.
+- Quando definimos um seletor para um determinado componente, então passamos a 
+referenciar dentro do html a partir desse seletor.
+
+Instalação da dependência do Material Design
+
+- x...

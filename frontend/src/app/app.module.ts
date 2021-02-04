@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
     AppRoutingModule
   ],
   providers: [],
+  /* Está definindo qual componente será inicializado primeiramente junto com a aplicação. */
   bootstrap: [AppComponent]
 })
 export class AppModule { }
