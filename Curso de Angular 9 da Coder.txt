@@ -141,4 +141,149 @@ referenciar dentro do html a partir desse seletor.
 
 Instalação da dependência do Material Design
 
-- x...
+- cd frontend/
+- ng add @angular/material
+- Set up global Angular Material typography styles? (y/N) responder: yes
+- Acima está perguntando se desejamos aplicar a tipografia do Material para
+todo o projeto.
+- Set up browser animations for Angular Material? (Y/n) responder: yes
+- Com relação as animações responder que sim.
+
+Implementação do componente header (Cabeçalho da página) 
+
+- A partir do momento que instalamos o Material Design a fonte é considerada 
+de forma global.
+
+- Com o comando ng generate component geramos um novo componente ou também
+podemos usar o comando de forma abreviada: ng g c
+
+- Vamos criar o componente header da seguinte forma: ng g c components/template/header, 
+foi passado o caminho e dentro desse caminho será colocado o componente header, se o caminho
+não existe então ele é criado de forma automática.
+
+- Depois do componente criado ele é registrado automaticamente dentro do módulo.
+
+- MacBook-Air-de-Julio:frontend julio$ ng g c components/template/header
+- Abaixo está o log do terminal com as ações realizadas após a execução do comando.
+
+CREATE src/app/components/template/header/header.component.css (0 bytes)
+CREATE src/app/components/template/header/header.component.html (21 bytes)
+CREATE src/app/components/template/header/header.component.ts (275 bytes)
+UPDATE src/app/app.module.ts (703 bytes)
+
+-  Foram criados três arquivos de forma automática, os arquivos css, html e ts, além
+disso esses arquivos foram registrados dentro do módulo de forma automática.
+
+- Para os três arquivos serem criados de forma automática é necessário estar usando
+template e estilo externos, ou seja, sem ser inline, por isso devemos setar as opções
+conforme abaixo dentro do arquivo angular.json.
+
+          "inlineTemplate": false,
+          "inlineStyle": false,
+
+- Agora precisamos começar a trabalhar em nosso template que é o nosso header, 
+sendo que o arquivo se chama header.component.html
+
+- Para o nosso template vamos importar a toolbar do Material Design da seguinte forma:
+   
+    /* Importação dos módulos do Material Design */
+       import { MatToolbarModule } from '@angular/material/toolbar';
+
+Implementação do componente footer (Rodapé da página) 
+    
+- Criamos o componente footer com o seguinte comando:
+  g g c components/template/footer
+
+- Saída do resultado do comando:
+
+  MacBook-Air-de-Julio:CursoAngular9Coder julio$ cd frontend/
+  MacBook-Air-de-Julio:frontend julio$ ng g c components/template/footer
+  CREATE src/app/components/template/footer/footer.component.css (0 bytes)
+  CREATE src/app/components/template/footer/footer.component.html (21 bytes)
+  CREATE src/app/components/template/footer/footer.component.ts (275 bytes)
+  UPDATE src/app/app.module.ts (1057 bytes)  
+
+- Temos um arquivo css que atua de forma global dentro da aplicação que se 
+chama styles.css e fica dentro da pasta src.
+
+Criação do componente de navegação
+
+- Abaixo criamos um componente de navegação chamado nav.
+
+MacBook-Air-de-Julio:CursoAngular9Coder julio$ cd frontend/
+MacBook-Air-de-Julio:frontend julio$ ng g c components/template/nav
+CREATE src/app/components/template/nav/nav.component.css (0 bytes)
+CREATE src/app/components/template/nav/nav.component.html (18 bytes)
+CREATE src/app/components/template/nav/nav.component.ts (263 bytes)
+UPDATE src/app/app.module.ts (1147 bytes)
+
+Elementos do Angular
+
+- Componentes
+- Diretivas
+- Rotas
+- Pipes
+- Observables (framework rxjs)
+- Services 
+- Injeção de dependência
+- Binds de eventos, de propriedade...
+
+- É importante entender como navegar entre os componentes.
+- Pipes são processamentos que conseguimos fazer dentro da página.
+- Um componente é formado por via de regra por três partes.
+- Um componente pode não ter estilo (css) aplicado, simplesmente pode ter apenas
+o html e o typescript.
+- Não é obrigatório ter o html em um arquivo separado, ele pode ficar dentro do 
+arquivo typescript caso queira usar inline.
+- Existe como se fosse um mundo dentro do componente, se um estilo for aplicado 
+ele servirá apenas para o componente.
+
+Attribute Directives (Diretiva de Atributo)
+
+- Altera a aparência e o comportamento de um elemento, componente ou outra diretiva.
+- Foca em duas coisas: alterar a aparência e o comportamento.
+- A parte de aparência diz a respeito de mexer no css por exemplo.
+- A parte de comportamento quer dizer que colocamos uma diretiva dentro de um 
+determinado botão e essa diretiva faz com que seja feita uma chamada pro backend, ou
+uma chamada ajax para  o backend da aplicação.
+
+- Podemos criar uma diretiva pela ferramenta de linha de comando (CLI).
+- Decorator é um padrão de projetos que tem como objetivo evitar herança, em
+vez de ter herança se trabalha com composição para estender um determinado objeto.
+- Decorator são os @AlgumaCoisa que o Angular usa para definir que uma classe exerce
+algum tipo de papél dentro do framework.
+- Se queremos que uma classe seja um componente então colocamos o @Component.
+- Se queremos que uma classe seja uma diretiva então colocamos o @Directive.
+- Podemos usar seletores como atributo em tags do html.
+- Uma diretiva de atributo consegue alterar o estilo e o comportamento.
+
+Structural Directive (Diretiva de Estrutura)
+
+- Altera o layout adicionando e removendo elementos da DOM.
+- Uma diretiva estrutural tem um asterísco na frente, por exemplo: *ngIf, 
+ou *ngFor, podemos usar essas diretivas de condicional ou de laço de repetição
+para exibir ou suprimir conteúdo, por exemplo mostrar um formulário na DOM
+somente se um produto estiver setado.
+
+Property Binding (Ligação de Propriedade)
+
+- Quando queremos pegar informações que estão em um componente, podemos 
+imaginar um componente como uma pequena aplicação, como uma aplicação deve
+haver comunicação entre o arquivo typescript e o arquivo html, o css vai 
+ser automaticamente aplicado dentro do html, no caso do css basta apenas 
+aplicar os estilos através dos seletores.
+- Por exemplo para acessar um array de produtos no html precisamos de ter
+algum tipo de sintaxe para dizer que irá acessar o array produtos que está
+dentro do componente, para isso devemos criar uma variável entre colchetes
+dentro de uma tag qualquer, por exemplo:
+    <table> 
+      [dataSource]="products"
+    </table>
+- No exemplo acima será buscado por uma variável de nome products no arquivo
+typescript externo.
+- Binding significa ligação, para realizar uma ligação é necessário usar 
+colchetes ligados a um atributo dentro do html.
+
+Event Binding (Ligação de Evento)
+
+-xxx.

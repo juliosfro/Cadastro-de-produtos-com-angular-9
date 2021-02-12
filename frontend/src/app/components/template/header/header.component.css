@@ -1,0 +1,26 @@
+/* Implementação do css do nosso header. */
+.header {
+    display: flex;
+    align-items: center;
+}
+
+/* Agora vamos mexer na tag de link a dentro do nosso header. */
+.header a {
+    display: flex;
+    align-items: center;
+    /* Para tirar o sublinhado do link. */
+    text-decoration: none;
+}
+
+.header .logo {
+    max-height: 32px;
+}
+
+.header .title-group {
+    padding-left: 25px;
+}
+
+/* Espacamento entre o titulo e o icone. */
+.header .title-group i {
+    padding-right: 5px;
+}
