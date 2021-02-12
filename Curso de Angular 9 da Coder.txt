@@ -276,9 +276,11 @@ aplicar os estilos através dos seletores.
 algum tipo de sintaxe para dizer que irá acessar o array produtos que está
 dentro do componente, para isso devemos criar uma variável entre colchetes
 dentro de uma tag qualquer, por exemplo:
+   
     <table> 
       [dataSource]="products"
     </table>
+
 - No exemplo acima será buscado por uma variável de nome products no arquivo
 typescript externo.
 - Binding significa ligação, para realizar uma ligação é necessário usar 
@@ -286,4 +288,267 @@ colchetes ligados a um atributo dentro do html.
 
 Event Binding (Ligação de Evento)
 
--xxx.
+- A questão é ligar um determinado evento do html para um método dentro do
+componente.
+- Usamos o parenteses para apontar para um método dentro do componente, veja 
+abaixo um exemplo:
+
+    <button mat-raised-button
+    (click)="createProduct()"
+    color="primary">
+    Salvar
+    </button>
+
+- No exemplo acima ao clicar no botão será chamado dentro do componente a 
+função que possuí o nome createProduct.
+
+One Way Data Binding (Binding de única direção)
+
+- Data Binding de uma única direção.
+- Imaginamos que tenhamos em nosso html um input de nome e em nosso 
+componente typescript uma variável chamada nome.
+- A alteração tem um único sentido que é do typescript para o html.
+- Veja abaixo o exemplo de código:
+
+    <input [value]="nome"/> /* Tag html */
+    nome: String;           /* Variável tipada dentro do typescript */
+
+- Ao setar um novo valor para a variável nome no typescript então é 
+atribuído de forma automática o preenchimento do input nome do html
+com o valor da variável nome do typescript, ocorrerá o preenchimento
+automático do campo nome no html.
+
+- No exemplo acima estamos usando binding de atributo pois estamos
+usando colchetes no valor [value] do input para pegar o conteúdo de
+nome.
+
+- O nome que está entre aspas no input do html tem que ser o mesmo
+da variável que está dentro do arquivo typescript do componente.
+
+Two Way Data Binding (Binding de dupla direção)
+
+- Significa que se alterar no html ele vai atualizar no typescript
+e se atualizar no typescript ele vai atualizar no html, a alteração
+é mútua em ambos.
+
+- Veja abaixo um exemplo de código:
+        
+        /* Tag html com sintaxe do two way data binding */
+        <input [(ngModel)]="nome"/> 
+        
+        /* Variável tipada dentro do typescript */
+        nome: String;           
+
+- Serve para os dados ficarem sicronizados entre o html e o typescript.
+- Será usado na criação de formulários, tanto para criar ou alterar produto
+vamos usar o two way data binding.
+
+Angular Router
+
+- Para fazer a navegação entre componentes é necessário usar rotas, por 
+exemplo sair da tela de cadastro de produtos e ir para a tela inicial (home).
+
+- É necessário mapear a url diretamente para o componente, sempre que o 
+usuário colocar /home ir para o componente home por exemplo.
+
+- Router Outlet é um componente que faz parte do angular router e esse 
+componente vai injetar dentro dele os componentes de acordo com a navegação
+que será feita.
+
+- Por o exemplo o mapeamento de /home para o componente home, esse mapeamento
+é de responsabilidade do router outlet.
+- Basicamente haverá o mapeamento entre a rota e o componente.
+
+Angular Pipes
+
+- Pipes são processamentos que fazemos em cima de variáveis, veja um exemplo:
+
+    <p>
+      O vencimento é 
+      {{ produto.vencimento | date }}
+    </p>
+
+- No exemplo acima está ocorrendo uma formtação de data.
+- Alguns pipes podem receber parametros, veja abaixo:
+
+    <td mat-cell *matCellDef="let product">
+      {{ product.price | currency: 'BRL' }}
+    </td>
+
+- No código acima estamos formatando o preço do produto para o Real
+brasileiro.
+- Em pipes também podemos passar mais de um parametro.
+- Podemos personalizar a chaamda da função.
+- Podemos ter uma cadeia de processamento, ou seja, uma cadeia de pipes:
+
+        <p>
+      O vencimento é 
+      {{ produto.vencimento | date: 'fullDate' | upperCase }}
+    </p>
+
+- No pipe dizemos que queremos mostrar a data completa (fullDate) e 
+depois chamamos para colocar tudo em maiusculo.
+- Chamamos o que ocorreu acima de chaining (encadeamento) de pipes.
+
+Programação Reativa
+
+- O Angular usa um framework chamado ReactiveX que possuí implementações
+para várias linguagens, temos o rxjava, rxjs e para várias outras
+linguagens diferentes.
+- O que seria uma programação reativa? Quando você pensa por exemplo
+que acabou de contratar um funcionário para uma empresa, a ultima coisa
+que você quer é que o funcionário se comporte de forma reativa, normalmente
+desejamos que o funcionário se comporte de forma pró-ativa.
+- O que acontece quando um código se comporta de forma pró-ativa? Muito
+provalmente ele ficará o tempo todo tentando fazer algum tipo de processamento,
+significa que ele estará consumindo mais processamento, vai executar código que 
+não tem nada para fazer, fica o tempo todo perguntando se tem coisa para fazer 
+por exemplo.
+- Código pró-ativo é menos desejado que um funcionário pró-ativo.
+- Há um conceito que um código só será chamado de forma reativa, ou seja,
+precisa acontecer alguma coisa externa, no caso um evento para então o código 
+ser executado, aí vem o conceito de programação reativa.
+
+O Padrão Observer
+
+- Qual o padrão de projetos mais utilizado na web? É o Padrão Observer, muitas 
+coisas do JavaScript é baseada no Padrão Observer, temos o conceito de callback,
+de promisses e de observables que iremos trabalhar agora.
+- É um padrão orientado a eventos.
+- Surgiu de um livro chamado a gangue dos quatro (GOF), nesse livro foram 
+implementados 23 padrões.
+- Existe um cara chamado Subject que é quem tem a capacidade de monitorar e 
+detectar quando um evento acontece.
+- Observer ou observadores são os códigos que estão interessados em um 
+determinado evento, podemos delegar para o Subject para monitorar tal evento,
+quando acontecer o evento me notifique.
+- Todos os Observables precisam se registrar no Subject para dizer que eles 
+estão interessados no evento, há um registro do observador que está interessado 
+no subject, o subject é responsável por detectar o evento, quando o evento 
+acontecer, já o subject tem uma lista dentro dele de todos os observadores 
+então ele irá notificar todos os observadores interessados.
+- Quando um observador é notificado por um subject então é executado uma 
+função dentro do observador de acordo com o evento que foi gerado.
+- Imaginamos que tenhamos um evento de compra, aí temos um observador que é
+para enviar um e-mail para o usuário, temos outro observador que é para
+dar baixa no estoque, temos um observador que vai mandar uma mensagem para
+outro sistema que vai separar a mercadoria, e aí aconteceu o evento da venda.
+
+Entendendo Observables
+
+-callbacks
+- Quando passamos uma função como parametro para outra função essas funções
+são chamadas também de callback, por exemplo invoque essa função que estou 
+passando como parametro quando a resposta da requisição chegar.
+- Um dos problemas da callback é quando temos uma lógica mais complexa e 
+acabamos caindo em um cenário que precisamos passar uma callback dentro de 
+outra callback, isso é um tema já relacionado a JavaScript, nem tanto a angular
+e nem tanto a observables.
+- Surgiu a partir do ES6 as promises que também usa a questão do callback que 
+é passar uma função como  parametro mas o que é importante nas promises é que
+ela tem a capacidade de encadear várias chamadas.
+- É mais fácil compor várias chamadas quando usamos promises.
+- Promises usamos apenas uma única vez, após executar determinado código e depois
+que terminar não conseguimos reutilizar essa promise.
+- Os observables são uma evolução da promise, pois são reúsaveis, suporta stream
+de dados, vamos supor que precisamos ficar monitorando uma determianda votação, 
+então podemos criar um observable para ficar de tempo em tempo consumindo essa
+informação, com um único observable conseguimos ficar recebendo uma stream de 
+dados.
+- Outro poder importante das promises são os operadores, existem uma série de 
+operadores que são funções que é possível usar juntamente com os observables.
+- No caso da promise temos o método then, e no caso dos observables temos o 
+map, filter e outros do tipo.
+- Só tem programação reativa a partir do padrão observer, o código só executado
+quando o evento acontece.
+- Quando estamos trabalhando com promises, callback e observable na verdade 
+estamos trabalhando com códigos assíncronos pois não há uma resposta de imediato
+da chamada do código.
+
+Services
+
+- São classes que tem como objetivo principal organizar e compartilhar 
+métodos e dados entre componentes.
+- Um Service dentro do Angular é uma classe.
+- A idéia é separarmos as responsabilidades, tudo que diz respeito a 
+responsabilidade de mostrar algo visual na tela, diz respeito ao componente,
+podemos um ter pedaço da aplicação componentizada, dentro desse componente
+podemos ter responsabilidades que diz respeito a parte visual, quando temos
+regras que não dizem respeito diretamente com a parte visual, por exemplo
+queremos encapsular o acesso a API, ou seja, o backend da aplicação então O
+ideal é separar as responsabilidades, então deve-se colocar algumas responsabilidades
+no service porque diz respeito a parte não visual, pois não tem relação com
+aquilo que está sendo exibido na tela.
+- O Angular não força ninguém a criar services, podemos criar services tanto
+com a idéia de separar responsabilidades quanto para viabilizar a comunicação
+entre componentes.
+- Quando temos lógicas que não são responsabilidades do componente então
+surgem os services, por consultar um produto por id, atualizar um produto ou 
+excluir então podemos colocar tudo isso dentro de um único service.
+- Se for um service que diz a respeito a operações de crud com um produto 
+então não devemos colocar funções como cadastrar cliente por exemplo.
+- Deve haver coerencia de as lógicas estarem juntas, caso não houver 
+coerencia então deve-se criar mais um service.
+- Para criar um service podemos usar o comando: ng g s services/products
+- O arquivo será criado com o nome de product.service.ts
+- Como podemos usar um service dentro de um componente? A partir da injeção 
+de dependência, através do decorator @Injectable significa que uma classe 
+pode ser injetada.
+- Podemos definir um injetor como o raíz de uma aplicação, setando o atributo
+providedIn: "root" dessa forma por exemplo.
+- Existe um padrão de projeto chamado singleton, que é uma forma que se cria 
+apenas uma única instancia de uma classe.
+- O angular é responsável por gerenciar todos os objetos então não devemos
+instanciar classes de services e nem de componentes.
+
+Injeção de dependência
+
+- É um padrão no qual a classe recebe as dependências de uma fonte externa 
+ao invés de criar por conta própria.
+- Services são singletons dentro do escopo de um injector.
+- Basicamente temos dois grupos de injetores, temos injetores de módulo e
+temos injetores de elementos.
+- O providedIn: "root" aponta sempre para o app-module, no lugar de root
+podemos colocar a referencia para um módulo.
+
+        ModuleInjector -> @NgModule ou @Injectable
+        ElementInjector -> @Directive ou @Component
+
+- Acima são formas de usar injeção de dependência dentro de módulos e 
+componentes.
+- Pode-se aprender sobre injeção de dependência hierarquica.
+
+Componente Início
+
+- Um componente pode alterar os dados de outro componente e podemos fazer
+isso através de um conceito extremamente importante que são services,
+
+- Vamos criar nosso componente home com o comando: ng g c views/home
+- Organizamos nosso componente home em uma pasta separada mas poderia 
+ficar dentro da pasta components/template, pois dentro de components 
+vai ficar apenas o que for reutilizado em mais de uma tela e quando 
+temos uma tela inteira vamos colocar dentro da pasta views, é apenas
+uma forma de organizar.
+- Uma view é um componente então poderia ficar dentro da pasta components
+sem nenhum problema.
+
+Navegação entre componentes
+
+- Para navegar entre os componentes podemos usar o arquivo de rotas
+do angular que no nosso caso se chama app-routing-.module.ts,
+dentro desse arquivo temos um array de rotas que é super fácil
+de implementar.
+
+- Usamos o componente routerLink para criar as rotas de Navegação dentro
+das tags do html, veja um exemplo abaixo:
+
+                <a mat-list-item  routerLink="/products">
+                    <i class="material-icons">
+                        storefront
+                    </i>
+                    Produtos
+                </a>
+
+Diretivas na prática 
+
+xxx.
