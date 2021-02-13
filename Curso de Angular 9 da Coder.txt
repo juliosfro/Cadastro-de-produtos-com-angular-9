@@ -551,4 +551,71 @@ das tags do html, veja um exemplo abaixo:
 
 Diretivas na prática 
 
-xxx.
+- O objetivo é ver as diretivas na prática.
+- Diretivas de atributo são capazes de trabalhar tanto na parte de estilo
+quanto no comportamento.
+- Diretivas estruturais são capazes de manipular a estrutura da página (DOM),
+é capaz de adicionar ou remover elementos na DOM.
+- As diretivas estruturais usam um * na frente.
+- Podemos criar uma diretiva com o seguinte comando: ng g d directives/red
+- A diretiva que criamos acima serve para setar a cor vermelha para atributos
+do html, vamos setar a cor vermelha pro coração que está no footer.
+- Dentro de declarations colocamos componentes diretivas e pipes.
+
+- A forma de criar uma diretiva estrutural é exatamente a mesma forma de se 
+criar uma diretiva de atributo.
+- Vamos criar uma diretiva de estrutura para funcionar como se fosse um *ngFor, 
+vamos usar o comando: ng g d directives/for
+- Vamos usar a diretiva que criamos apenas para testar e depois vamos apagar ela, 
+pois não tem onde a mesma ser usada.
+- Em diretivas podemos mudar o nome do seletor para o que quisermos, basta referenciar
+pelo nome que colocamos.
+
+Criação do componente criar produto
+
+- Agora vamos criar nosso componente de cadastro de produto, ou criação do
+produto, vamos usar o comando: ng g c components/product/product-create
+
+- O próximo passo é acrescentar na parte das rotas.
+- Acrescentamos no arquivo app-routing.module.ts
+- Uma dica bacana é instalar o  plugin Auto Import no Visual Studio Code.
+
+Bindings
+
+- Event Binding e Binding de atributos.
+- São duas formas diferentes de se chamar um método dentro de um componente.
+- São duas sintaxes extremamente importantes dentro do angular.
+
+- Vamos criar uma função como exemplo dentro do arquivo product-create.component.ts
+
+          fazerAlgo(): void {
+            console.log("Fazendo algo.");
+          }
+
+- Agora abaixo vamos fazer a ligação dessa função com o evento de click do botão.
+
+          <button (click)="fazerAlgo()">Fazer Algo</button>
+
+- O que ocorreu acima chamamos de Event Binding, ou seja, um binding de evento.
+
+- Agora vamos ver um exemplo de binding de atributo.
+
+    propLegal = "Um valor qualquer."; /* Declaração de uma variável */
+   
+   /* Abaixo estamos setando em id o valor da variável propLegal, 
+       para isso é necessário usar colchetes em id para ocorrer a busca pelo
+       atributo de mesmo nome. 
+   */
+    
+    <p [id]="propLegal">product-create works!</p>
+
+- Acima ocorreu o que chamamos de binding de atributo, o valor da variável
+será resolvido dentro do componente.
+
+Criação do Service de Produto
+
+- ng g s components/product/product
+- Dentro da pasta product teremos um service chamado product.
+- Um service é responsável por toda a parte de regra de negócio e conexão 
+com banco de dados.
+- xxx.
