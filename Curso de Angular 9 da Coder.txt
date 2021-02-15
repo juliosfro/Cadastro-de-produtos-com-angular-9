@@ -718,4 +718,18 @@ Criação do Componente de Atualização de Produto
 - O dois pontos no caminho acima significa passagem de parametro na url.
 - Para identar o código de forma automática no visual studio code usamos:
 alt + shift + f
-- 
+
+- A escolha do método http é que vai decidir o que será feito no backend.
+
+Modificar o título do header conforme a navegação
+
+- Pode-se criar todos os services em uma pasta separada, vai depender do 
+padrão de organização.
+- É bom aprender sobre padrões de pasta de projeto Angular.
+- Geralmente são criadas pastas chamadas modules, é normal ter um módulo
+para compartilhar código em todos os outros módulos que são chamados de
+shared, ou seja, compartilhado.
+
+Como usar o Service dentro do componente Header?
+
+- Pode ser através da criação de um service e de injeção de dependência.
