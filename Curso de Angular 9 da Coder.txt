@@ -617,5 +617,105 @@ Criação do Service de Produto
 - ng g s components/product/product
 - Dentro da pasta product teremos um service chamado product.
 - Um service é responsável por toda a parte de regra de negócio e conexão 
-com banco de dados.
-- xxx.
+com banco de dados, também pode ser usado para enviar mensagens para o 
+frontend, como uma mensagem de produto cadastrado com sucesso por exemplo.
+
+Client HTTP do Angular
+
+- Vamos trabalhar com o client http do Angular usando o padrão observer, 
+usando subscrible para notificar as partes interessadas no evento.
+- Uma requisição não devolve uma resposta e sim  um observable.
+- Vamos importar o HttpClientModule
+- Precisaremos injetar nosso HttpClientModule no nosso service de produtos
+para ter acesso as funcionalidades.
+- Toda injeção de dependência é feita diretamente no construtor da classe,
+veja abaixo um exemplo:
+
+      constructor(private snackBar: MatSnackBar,
+                  private httpClient: HttpClient) {}
+
+- Para realizar uma chamada http do tipo post para o back-end é muito simples,
+veja abaixo:
+
+        /* Criamos uma variável com a url da api que vamos mandar a requisição. */
+        baseUrl = "http://localhost:3001/products";
+
+        createProduct(product: Product): Observable<Product> {
+          /* Agora vamos enviar uma requisição http para o nosso back-end. */
+          return this.httpClient.post<Product>(this.baseUrl, product);
+        }
+
+- Acima estou inserindo um produto no backend e espero receber como resposta
+o produto que acabei de inserir.
+
+Criação do formulário de produtos (Create)
+
+   <!-- Dentro do formulario usamos o Two Way Data Binding -->
+
+   <form>
+      <mat-form-field>
+         <input matInput placeholder="Nome do produto"
+          [(ngModel)]="product.name" name="name">
+      </mat-form-field>
+      <mat-form-field>
+         <input matInput placeholder="Preço do produto"
+          [(ngModel)]="product.price" name="price">
+      </mat-form-field>
+   </form>
+
+Componente Obter Produto (Read)
+
+- Vamos criar nosso componente para realizar a leitura dos produtos 
+que já estão no banco de dados (JsonServer).
+- Vamos usar o comando: ng g c components/product/product-read
+
+- Existe o Schematics que é um gerador de componentes automático para o 
+Material Design.
+
+- O Schematics pode ser acessado pelo seguinte endereço: 
+https://material.angular.io/guide/schematics
+
+- Abaixo está um exemplo de comando para gerar um componente do tipo
+table (grid de consulta).
+
+    ng generate @angular/material:table components/product/product-read2
+
+- A questão da paginação tem que envolver o backend, pois não adianta nada
+trazer dez mil registros do banco de dados para depois paginar no frontend.
+
+- O JsonServer por exemplo suporta paginação, pode se passar pela url o 
+limite de dados que se deseja carregar através da requisição GET, isso
+pode ser testado através do Postman.
+
+- Exemplo de requisição com paginação:
+      http://localhost:3001/products?_page=2?&_limit=1
+
+- No exemplo de requisição acima foi trazido apenas o segundo elemento do array 
+  com o limite de apenas um objeto.
+
+- A idéia é trazer tudo paginado direto do backend.
+- É necessário aprender a se virar sozinho e não ficar apenas seguindo passo a 
+passo.
+
+- Precisaremos criar um componente de alteração e outro de exclusão.
+- Para atualizar um registro devemos enviar uma requisição do tipo PUT 
+conforme estabelece o padrão REST.
+- Para atualizar apenas alguns atributos de um objeto que está no banco 
+de dados usamos requisição do tipo PATCH de acordo com o padrão REST.
+
+Criação do Componente de Atualização de Produto
+
+- Criamos nosso componente de atualização de produto com o seguinte comando:
+      ng g c components/product/product-update
+
+- Exemplo de uma rota do arquivo de rotas do Angular.
+    
+    {
+      path: "products/update/:id",
+      component: ProductUpdateComponent
+    }
+
+- O dois pontos no caminho acima significa passagem de parametro na url.
+- Para identar o código de forma automática no visual studio code usamos:
+alt + shift + f
+- 
